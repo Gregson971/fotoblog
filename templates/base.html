@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -5,18 +7,58 @@
         <meta charset="utf-8" />
         <meta name="description" content="FotoBlog" />
         <meta name="keywords" content="FotoBlog" />
+        <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
     </head>
     <body>
-        <h1>FotoBlog</h1>
-        {% block content %}
-        {% endblock content %}
-        {% if user.is_authenticated %}
-            <p>
-                Vous êtes connecté en tant que {{ request.user }}. <a href={% url 'logout' %}>Se déconnecter</a>
-            </p>
-            <p>
-                Vous souhaitez changer de mot de passe ? Cliquez <a href={% url 'password_change' %}>ici</a>
-            </p>
-        {% endif %}
+        <div class="container">
+            <div class="left_content">
+                <h1>FotoBlog</h1>
+                {% if user.is_authenticated %}
+                    <p>Salut, {{ request.user }} !</p>
+                    <div class="profil_picture_container">
+                        {% if request.user.profile_photo %}
+                            <img class="profil_picture"
+                                 width="120px"
+                                 height="120px"
+                                 src="{{ request.user.profile_photo.url }}"
+                                 alt="Avatar de {{ request.user }}" />
+                        {% else %}
+                            <img class="profil_picture"
+                                 width="120px"
+                                 height="120px"
+                                 src="{% static 'images/default_avatar.png' %}"
+                                 alt="Avatar par défaut" />
+                        {% endif %}
+                    </div>
+
+                    <hr />
+
+                    <nav>
+                        <ul class="menu">
+                            <li>
+                                <a href={% url 'home' %}>Accueil</a>
+                            </li>
+                            <li>
+                                <a href={% url 'photo_upload' %}>Télécharger une photo</a>
+                            </li>
+                            <li>
+                                <a href={% url 'upload_profile_photo' request.user.id %}>Changer la photo de profil</a>
+                            </li>
+                            <li>
+                                <a href={% url 'password_change' %}>Changer le mot de passe</a>
+                            </li>
+                            <li>
+                                <a href={% url 'logout' %}>Se déconnecter</a>
+                            </li>
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
+
+            <div class="right_content">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
     </body>
 </html>

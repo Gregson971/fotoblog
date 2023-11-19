@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 import authentication.views
 import blog.views
@@ -41,4 +43,12 @@ urlpatterns = [
     ),
     path('signup/', authentication.views.signup_page, name='signup'),
     path('home/', blog.views.home, name='home'),
+    path('photo/upload/', blog.views.photo_upload, name='photo_upload'),
+    path(
+        'upload_profile_photo/<int:user_id>/', authentication.views.upload_profile_photo, name='upload_profile_photo'
+    ),
+    path('upload_photo_done/', authentication.views.upload_photo_done, name='upload_photo_done'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

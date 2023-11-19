@@ -1,4 +1,14 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <p>Vous êtes connecté !</p>
+    <h2>Photos</h2>
+
+    <section class="picture_wrapper">
+        {% for photo in photos %}
+            <div class="picture_container">
+                <img alt="" width="250px" height="" src="{{ photo.image.url }}">
+                <p>{{ photo.caption }}</p>
+            </div>
+        {% endfor %}
+    </section>
 {% endblock content %}
