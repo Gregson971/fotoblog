@@ -12,13 +12,18 @@ body {
 .left_content {
     padding: 16px;
     width: 268px;
-    height: 100vh;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
     background-color: #232121;
     color: #ece2cf;
 }
 
 .right_content {
     padding: 16px;
+    margin-left: 320px;
 }
 
 .menu {
@@ -57,6 +62,7 @@ body {
 /* Photos */
 .picture_wrapper {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .picture_container {
