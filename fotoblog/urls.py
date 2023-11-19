@@ -44,10 +44,10 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('home/', blog.views.home, name='home'),
     path('photo/upload/', blog.views.photo_upload, name='photo_upload'),
-    path(
-        'upload_profile_photo/<int:user_id>/', authentication.views.upload_profile_photo, name='upload_profile_photo'
-    ),
+    path('upload_profile_photo/', authentication.views.upload_profile_photo, name='upload_profile_photo'),
     path('upload_photo_done/', authentication.views.upload_photo_done, name='upload_photo_done'),
+    path('blog/create', blog.views.blog_and_photo_upload, name='blog_create'),
+    path('blog/<int:blog_id>', blog.views.view_blog, name='view_blog'),
 ]
 
 if settings.DEBUG:

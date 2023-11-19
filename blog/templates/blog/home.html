@@ -2,13 +2,32 @@
 
 {% block content %}
     <h2>Photos</h2>
-
     <section class="picture_wrapper">
-        {% for photo in photos %}
-            <div class="picture_container">
-                <img alt="" width="250px" height="" src="{{ photo.image.url }}">
-                <p>{{ photo.caption }}</p>
-            </div>
-        {% endfor %}
+        {% if photos.count == 0 %}
+            <p>Il n'y a pas encore de photo.</p>
+        {% else %}
+            {% for photo in photos %}
+                <div class="picture_container">
+                    <img alt="" width="" height="" src="{{ photo.image.url }}">
+                    <p>{{ photo.caption }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
     </section>
+
+    <h2>Blog</h2>
+    <div class="grid-container">
+        {% if blogs.count == 0 %}
+            <p>Il n'y a pas encore de billet.</p>
+        {% else %}
+            {% for blog in blogs %}
+                <div class="post">
+                    <a href="{% url 'view_blog' blog.id %}">
+                        <h4>Billet : {{ blog.title }}</h4>
+                        <img alt="" width="" height="" src="{{ blog.photo.image.url }}" />
+                    </a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock content %}

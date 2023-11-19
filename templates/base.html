@@ -39,10 +39,13 @@
                                 <a href={% url 'home' %}>Accueil</a>
                             </li>
                             <li>
+                                <a href={% url 'blog_create' %}>Écrire un billet</a>
+                            </li>
+                            <li>
                                 <a href={% url 'photo_upload' %}>Télécharger une photo</a>
                             </li>
                             <li>
-                                <a href={% url 'upload_profile_photo' request.user.id %}>Changer la photo de profil</a>
+                                <a href={% url 'upload_profile_photo' %}>Changer la photo de profil</a>
                             </li>
                             <li>
                                 <a href={% url 'password_change' %}>Changer le mot de passe</a>

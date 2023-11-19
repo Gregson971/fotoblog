@@ -54,6 +54,7 @@ body {
 
 }
 
+/* Photos */
 .picture_wrapper {
     display: flex;
 }
@@ -67,6 +68,19 @@ body {
 }
 
 .picture_container img {
-    width: 200px;
+    height: 150px;
+    border-radius: 8px;
+}
+
+/* Blog post */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.post img {
+    height: 150px;
     border-radius: 8px;
 }
