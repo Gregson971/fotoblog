@@ -1,33 +1,18 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <h2>Photos</h2>
-    <section class="picture_wrapper">
-        {% if photos.count == 0 %}
-            <p>Il n'y a pas encore de photo.</p>
-        {% else %}
-            {% for photo in photos %}
-                <div class="picture_container">
-                    <img alt="" width="" height="" src="{{ photo.image.url }}">
-                    <p>{{ photo.caption }}</p>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </section>
+{% load blog_extras %}
 
-    <h2>Blog</h2>
+{% block content %}
+    <h2>Votre flux</h2>
     <div class="grid-container">
-        {% if blogs.count == 0 %}
-            <p>Il n'y a pas encore de billet.</p>
-        {% else %}
-            {% for blog in blogs %}
-                <div class="post">
-                    <a href="{% url 'view_blog' blog.id %}">
-                        <h4>Billet : {{ blog.title }}</h4>
-                        <img alt="" width="" height="" src="{{ blog.photo.image.url }}" />
-                    </a>
-                </div>
-            {% endfor %}
-        {% endif %}
+        {% for instance in blogs_and_photos %}
+            {% if instance|model_type == 'Blog' %}
+                {% include "blog/partials/blog_snippet.html" with blog=instance %}
+
+            {% elif instance|model_type == 'Photo' %}
+                {% include "blog/partials/photo_snippet.html" with photo=instance %}
+
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock content %}

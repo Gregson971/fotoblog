@@ -51,6 +51,7 @@ urlpatterns = [
     path('photo/upload/', blog.views.photo_upload, name='photo_upload'),
     path('photo/upload-multiple/', blog.views.create_multiple_photos, name='create_multiple_photos'),
     path('follow-users/', blog.views.follow_users, name='follow_users'),
+    path('photo/feed/', blog.views.photo_feed, name='photo_feed'),
 ]
 
 if settings.DEBUG:

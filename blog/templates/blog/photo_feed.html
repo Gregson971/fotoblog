@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load blog_extras %}
+
+{% block content %}
+    <h2>Votre flux photo</h2>
+    <div class="grid-container">
+        {% for photo in photos %}
+            {% include "blog/partials/photo_snippet.html" %}
+
+        {% endfor %}
+    </div>
+{% endblock content %}
